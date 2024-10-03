@@ -22,13 +22,16 @@ const App = () => {
       </div>
       <div className='bottom'>
       <div className='feels'>
-        <p className=''>65 degree F</p>
+        <p className='bold'>65 degree F</p>  
+        <p>Feels Like</p>
       </div>
       <div className='humidity'>
-        <p>50%</p>
+        <p className='bold'>50%</p>
+        <p>Humidity</p>
       </div>
       <div className='wind'>
-        <p>12 MPH</p>
+        <p className='bold'>12 MPH</p>
+        <p>Wind Speed</p>
       </div>
       </div>
       </div>
