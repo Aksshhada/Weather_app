@@ -4,36 +4,59 @@ import axios from 'axios'
 
 const App = () => {
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=18.5204&lon=73.8567&appid=e432f400bda912345d3a38d4959fba7e`
+  const [data, setData] = useState({})
+  const [location, setLocation] = useState('')
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e432f400bda912345d3a38d4959fba7e`
+
+  const searchLocation = (event) => {
+    if (event.key === 'Enter'){
+      axios.get(url).then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      setLocation('')
+    }
+  }
 
   return (
     <div className='app'>
+      <div className='search'>
+        <input
+        value={location}
+        onChange={event => setLocation(event.target.value)}
+        onKeyPress={searchLocation}
+        placeholder='Enter Location'
+        type="text"/>
+      </div>
       <div className='container'>
       <div className='top'>
       <div className='location'>
-        <p>Pune</p>
+        <p>{data.name}</p>
       </div>
       <div className='temp'>
-        <h1>60 degree F</h1>
+        {data.main ? <h1>{data.main.temp}°F</h1> : null}
       </div>
       <div className='description'>
-        <p>Cloudy</p>
+        {data.weather ? <p>{data.weather[0].main}</p> : null}
       </div>
       </div>
+      {data.name != undefined &&
       <div className='bottom'>
       <div className='feels'>
-        <p className='bold'>65 degree F</p>  
+        {data.main ? <p className='bold'>{data.main.feels_like}°F</p> : null} 
         <p>Feels Like</p>
       </div>
       <div className='humidity'>
-        <p className='bold'>50%</p>
+        {data.main ? <p className='bold'>{data.main.humidity}%</p> : null}
         <p>Humidity</p>
       </div>
       <div className='wind'>
-        <p className='bold'>12 MPH</p>
+        {data.wind ? <p className='bold'>{data.wind.speed} MPH</p> :null}
         <p>Wind Speed</p>
       </div>
       </div>
+      }
       </div>
     </div>
   )
