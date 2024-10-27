@@ -69,7 +69,7 @@ h1 {
 }
 
 ::placeholder {
-  color: beige;
+  color: rgb(245, 245, 210);
 }
 
 .container {
