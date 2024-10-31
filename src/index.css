@@ -65,7 +65,7 @@ h1 {
   border-radius: 25px;
   border: 1px solid rgba(253, 248, 248, 0.932);
   background: rgba(255, 255, 255, 0.144);
-  color: bisque;
+  color: rgb(252, 230, 204);
 }
 
 ::placeholder {
